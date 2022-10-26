@@ -5,15 +5,14 @@
 #SBATCH --time=12:00:00
 #SBATCH --job-name=picrust_analysis
 #SBATCH --partition=batch,guest
-#SBATCH --error=/work/biocore/zalsafwani/CRC_data/raw_reads/qiime2/second_analysis/picrust/script_output/err.out
-#SBATCH --output=/work/biocore/zalsafwani/CRC_data/raw_reads/qiime2/second_analysis/picrust/script_output/std.out
+#SBATCH --error=/work/claytonlab/ereisher/philzoo2/qiime2/errpi.out
+#SBATCH --output=/work/claytonlab/ereisher/philzoo2/qiime2/stdpi.out
 #SBATCH --open-mode=append
 
 
-cd /work/biocore/zalsafwani/CRC_data/raw_reads/qiime2/second_analysis/picrust
+cd /work/claytonlab/ereisher/philzoo2/qiime2/picrust
 
 
 module load picrust2/2.4
 
-sed '1d' feature-table.tsv > fixed-feature-table.tsv
-picrust2_pipeline.py -s ../../exports/rep-seqs/dna-sequences.fasta -i fixed-feature-table.tsv -o results
+picrust2_pipeline.py -s /work/claytonlab/ereisher/philzoo2/qiime2/exports/rep-seqs/dna-sequences.fasta -i /work/claytonlab/ereisher/philzoo2/qiime2/exports/table/feature-table-w-taxa.biom -o results
