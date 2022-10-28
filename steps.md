@@ -10,13 +10,13 @@
     - To run the quality control using the FastQC 
     - First, run 'bash get_sample_name_dic.sh > sample_dic.txt' in order to get the sample list where each accession number separated by space
     - Second, copy the sample_dic.txt to the qc.slurm for the 'sample_name' variable 
-    - Once the 'sample_name' variable contain all of the samples make dirctury called 'qc' and make a sub-dirctury called 'script_output'
+    - Once the 'sample_name' variable contain all of the samples make directory called 'qc' and make a sub-directory called 'script_output'
     - Edit the paths in line 8, 9, and 20 then run qc.slurm
 
 3. Run Qiime2 
-    - Make dirctury called 'qiime2' and make sure QIIME2 version 2021.4 installed with all of the plugins listed above.
+    - Make directory called 'qiime2' and make sure QIIME2 version 2021.4 installed with all of the plugins listed above.
     - Bulid the manifest file using the 'manifest_builder.py' by specifiying -i acc_list_file -p path_to_the_raw_reads
-    - Get the metadata.tsv in the right formate example is provided.
+    - Get the metadata.tsv in the right formate (example is provided).
     - Get the latest relese for the refrence database (SILVA or Greengenes (GG)). 
     - Naive Bayes classifiers trained on: both Greengenes and Silva classifiers are available here: https://docs.qiime2.org/2020.6/data-resources/#taxonomy-classifiers-for-use-with-q2-feature-classifier 
     - Make sure these files are included in the 'qiime2' directory: metadata.tsv, manifest, and refrence database.
@@ -31,7 +31,7 @@
         * If adapter sequnces were removed, look at the 'paired-end-demux-trimmed.qzv'
         * If no adapter sequnces were removed, look at the 'demux.qzv' and replace line 33 with '--i-demultiplexed-seqs artifacts/demuxed-paired-end.qza'.
         * Assign values for the dada2 denoising step line 18-21.
-        * Make sure edit and check the file name of the refrence database line 72.
+        * Make sure edit and check the file name of the reference database line 72.
         * Finally, run the 'sbatch part2.slurm'
     - Part 3 before running 'part3.slurm' check the following: 
         * Edit the path in line 8, 9, and 15.
