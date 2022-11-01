@@ -15,6 +15,7 @@
 
 3. Run Qiime2 
     - Make directory called 'qiime2' and make sure QIIME2 version 2021.4 installed with all of the plugins listed above.
+    - All files needed for this section can be found in the qiime2 folder[https://github.com/clayton-lab/BugSeq-er/tree/main/qiime2] 
     - Bulid the manifest file using the 'manifest_builder.py' by specifiying -i acc_list_file -p path_to_the_raw_reads
     - Get the metadata.tsv in the right formate (example is provided).
     - Get the latest relese for the refrence database (SILVA or Greengenes (GG)). 
