@@ -16,6 +16,6 @@ cut /work/claytonlab/ereisher/philzoo2/qiime2/PhilMetadata.tsv -f 1,11 > sample_
 python pathway_format.py -i sample_list_type.tsv -r /work/claytonlab/ereisher/philzoo2/qiime2/picrust/vis-lefse/path_abun_unstrat.tsv -o path_abun_modified.tsv
 
 lefse_format_input.py path_abun_modified.tsv path_abun_modified.in -c 1 -s 2 -u 1 -o 1000000
-run_lefse.py /work/claytonlab/ereisher/philzoo2/qiime2/picrust/vis-lefse/path_abun_modified.in path_abun_modified.res
+lefse_run.py /work/claytonlab/ereisher/philzoo2/qiime2/picrust/vis-lefse/path_abun_modified.in path_abun_modified.res
 lefse_plot_res.py path_abun_modified.res path_abun_modified.png --title 'Pathway abundance unstrat' --dpi 300 
 
