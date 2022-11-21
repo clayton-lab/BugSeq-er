@@ -64,7 +64,7 @@
     - PICRUSt2 analysis steps- files can be found in the [PICRUSt2 folder](https://github.com/clayton-lab/BugSeq-er/tree/main/PICRUSt2)
         * First, install PICRUSt2 version 2.4.
         * Make a sub-directory to the 'qiime2' called 'picrust'.
-        * Go to the picrust directory 'cd picrust' and make sure 'picrust2.slurm', 'format_pathway_abun.sh' and 'pathway_format.py' are available in the directory.
+        * Go to the picrust directory 'cd picrust' and make sure 'picrust2.slurm'is available in the directory.
         * Before running the 'picrust2.slurm' script make sure to the edit the path in line 6, 9, 13, 16, and 19.
         * Once the scripted finish create a directory called 'vis-lefse', 'cd vis-lefse' and make sure both 'format_pathway_abun.sh', and 'pathway_format.py' are available in the directory.
         * The 'format_pathway_abun.sh' is used to create a visualization for PICRUSt abundance pathway.
