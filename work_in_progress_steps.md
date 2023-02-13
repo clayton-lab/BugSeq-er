@@ -1,10 +1,12 @@
-1. Get raw reads sequnces (fastq)-files can be found in the [Raw Reads folder](https://github.com/clayton-lab/BugSeq-er/tree/main/Raw%20Reads)
-    - To get sequnces from NCBI Sequence Read Archive (SRA), use the get_fastq.sh
-    - Before running the script, go to the SRA Run Selector (https://www.ncbi.nlm.nih.gov/Traces/study/)
-    - Then put the Sequence Read Archive (SRA) BioProject ID as an accession
-    - Next select the samples you want then downlowd the accession list and metadata for the selected samples
-    - Check the accession list file and name it 'SRR_Acc_List.txt' and make sure to leave one new line in the end of the file. Once the file is created (each line have one accession number).
-    - Finally, run the 'bash get_fastq.sh' in the directory you wish to get the sequnces.
+1. Get raw reads sequnces (fastq)
+    - Create a subdirectory for this analysis with a project-specific title (e.g., 'PhilZoo_date'). 
+    - Primary files can be found in the [Raw Reads folder](https://github.com/clayton-lab/BugSeq-er/tree/main/Raw%20Reads)
+    - Copy or reference get_fastq.sh to retrieve sequnces from NCBI Sequence Read Archive (SRA)
+        * Before running the script, go to the SRA Run Selector (https://www.ncbi.nlm.nih.gov/Traces/study/)
+        * Insert the Sequence Read Archive (SRA) BioProject ID as an accession
+        * Select the samples you want then downlowd the accession list and metadata for the selected samples
+    - Check the accession list file and name it 'SRR_Acc_List.txt'. Each line have one accession number.
+    - Finally, run 'bash get_fastq.sh' in the directory you wish to get the sequnces.
 
 2. Pre-process the data using FastQC and MultiQC- files can be found in the [Pre-process folder](https://github.com/clayton-lab/BugSeq-er/tree/main/Pre-process)
     - To run the quality control using the FastQC 
