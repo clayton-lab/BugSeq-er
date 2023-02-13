@@ -26,29 +26,30 @@
     - Copy metadata.tsv and the manifest file to the qiime2 subdirectory
         * Ensure metadata.tsv in the right format [(example provided here)](https://github.com/clayton-lab/BugSeq-er/blob/main/sample_metadata.tsv): specifically, the second row should read "#q2:types", then "categorical" for all other columns
     - Copy 'part1.slurm' to the project directory 
-        * Edit the path in line 8 & 9 (to script_output) and 20 (qiime2)
+        * Edit the path in lines 8 & 9 (to script_output) and 20 (qiime2)
         * //I don't understand this, or how to find/know if you have an adapter//If your data contain adapter sequnces, remove them using cutadapt line 35-44 (make sure to change line 37, and 38 with your adapter sequnces)
         * If your data doesn't contain adapter sequnces, comment out lines 35-44
     - Run 'sbatch part1.slurm'
     - Copy 'part2.slurm' to the project directory
-        * Edit the path in line 8 & 9 (to script_output) and 28 (qiime2)
+        * Edit the path in lines 8 & 9 (to script_output) and 28 (to qiime2)
         * Visualize 'demux.qzv' (for projects with no adapter sequences) or 'paired-end-demux-trimmed.qzv' (for projects with adapter sequences), located in the 'qiime2' 'artifacts' subdirectory, by downloading to your computer and uploading the file to [Qiime2 View](https://view.qiime2.org/) 
-        * Access the file's 'Interactive Quality Plot' tab: assign trimming values for forward (p_trim_left_f) and reverse (p_trim_left_r) reads by estimating the lowest sequence base (x axis) with quality data in the relevant graph; assign truncating values for forward (p_trunc_len_f) and reverse (p_trunc_len_r) reads by estimating the highest sequence base (x axis) with quality data in the relevant graph
+           * Access the 'Interactive Quality Plot' tab
+           * Assign trimming values for forward (p_trim_left_f, line 18) and reverse (p_trim_left_r, line 19) reads by estimating the lowest sequence base (x axis) with quality data in the relevant graph 
+           * Assign truncating values for forward (p_trunc_len_f, line 20) and reverse (p_trunc_len_r, line 21) reads by estimating the highest sequence base (x axis) with quality data in the relevant graph
         * If no adapter sequnces were removed, replace part2.slurm line 33 with '--i-demultiplexed-seqs artifacts/demuxed-paired-end.qza'
-        * Assign values for the dada2 denoising step line 18-21 (HERE)
-        * Make sure edit and check the file name of the reference database line 72
-        * Finally, run the 'sbatch part2.slurm'
-    - Part 3 before running 'part3.slurm' check the following: 
-        * Edit the path in line 8, 9, and 15.
-        * Look at the Interactive Sample Detail for the 'table-viz.qzv' in the artifacts directory in order to assign sampling depth value.
-        * Once a sampling depth value was chosen add it to line 29.
-        * Make sure that there is no directory called 'core-metrics-results'.
-        * Finally, run the 'sbatch part3.slurm'
-    - Normalization using SRS (scaling with ranked subsampling) method:
-        * First, download the amplicon sequence variant (ASV) or the operational taxonomic unit (OTU) found in the artifacts directory 'table.qza'. 
-        * Second, upload the 'table.qza' to the SRS Shiny app (https://vitorheidrich.shinyapps.io/srsshinyapp/) in order to choose a sampling depth (Cmin) or the normalization cut-off value.
-        * It is best to choose a Cmin which doesn’t result in eliminating so many samples.
-        * Once a Cmin value was chosen add it to line 7 in the 'normalized_srs.sh' script.
+        * Edit line 72 to match the name of the reference SILVA database file
+    - Run 'sbatch part2.slurm'
+    - Copy 'part2.slurm' to the project directory
+        * Edit the path in lines 8 & 9 (to script_output) and 15 (qiime2)
+        * Visualize 'table-viz.qzv', located in the 'qiime2' 'artifacts' subdirectory, by downloading to your computer and uploading the file to [Qiime2 View](https://view.qiime2.org/) 
+            * Access the 'Interactive Sample Detail' tab
+            * Assign sampling depth value (p_sampling_depth, line 29) as the smallest 'Feature Count' value
+        * Ensure that there is not a subdirectory names 'core-metrics-results' (if you have previous runs)
+    - Run 'sbatch part3.slurm'
+    - Perform normalization using SRS (scaling with ranked subsampling)
+        * Visualize 'table.qza', located in the 'qiime2' 'artifacts' subdirectory, by downloading to your computer and uploading the file to the [SRS Shiny app](https://vitorheidrich.shinyapps.io/srsshinyapp/)
+        * Assign a sampling depth (Cmin) at the lowest value which doesn’t result in eliminating samples
+        * Once a Cmin value was chosen add it to line 7 in the 'normalized_srs.sh' script.(HERE)
         * Finally, run the 'bash normalized_srs.sh' from the 'qiime2' directory.
 
 4. Create relative abundance plots (heatmap and barplot)- files can be found in the [R folder](https://github.com/clayton-lab/BugSeq-er/tree/main/R)
