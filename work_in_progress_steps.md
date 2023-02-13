@@ -1,27 +1,29 @@
-1. Get raw reads sequnces (fastq)
-    - Create a subdirectory for this analysis with a project-specific title (e.g., 'PhilZoo_date'). 
-    - Primary files can be found in the [Raw Reads folder](https://github.com/clayton-lab/BugSeq-er/tree/main/Raw%20Reads)
-    - Copy or reference get_fastq.sh to retrieve sequnces from NCBI Sequence Read Archive (SRA)
+1. Get raw reads sequnces (fastq): reference files can be found in the [Raw Reads folder](https://github.com/clayton-lab/BugSeq-er/tree/main/Raw%20Reads)
+    - Create a directory for this analysis with a project-specific title (e.g., 'PhilZoo_date'). 
+    - Copy get_fastq.sh to the project directory to retrieve sequnces from NCBI Sequence Read Archive (SRA)
         * Before running the script, go to the SRA Run Selector (https://www.ncbi.nlm.nih.gov/Traces/study/)
         * Insert the Sequence Read Archive (SRA) BioProject ID as an accession
         * Select the samples you want then downlowd the accession list and metadata for the selected samples
-    - Check the accession list file and name it 'SRR_Acc_List.txt'. Each line have one accession number.
-    - Finally, run 'bash get_fastq.sh' in the directory you wish to get the sequnces.
+    - Check the accession list file and name it 'SRR_Acc_List.txt'. Each line should have one accession number.
+    - Finally, run 'bash get_fastq.sh' in the project directory.
 
-2. Pre-process the data using FastQC and MultiQC- files can be found in the [Pre-process folder](https://github.com/clayton-lab/BugSeq-er/tree/main/Pre-process)
-    - To run the quality control using the FastQC 
-    - First, run 'bash get_sample_name_dic.sh > sample_dic.txt' in order to get the sample list where each accession number separated by space
-    - Second, copy the sample_dic.txt to the qc.slurm for the 'sample_name' variable 
-    - Once the 'sample_name' variable contain all of the samples make directory called 'qc' and make a sub-directory called 'script_output'
-    - Edit the paths in line 8, 9, and 20 then run qc.slurm
+2. Pre-process the data using FastQC and MultiQC: reference files can be found in the [Pre-process folder](https://github.com/clayton-lab/BugSeq-er/tree/main/Pre-process)
+    - Create project subdirectory 'qc' within the project directory, then create a subdirectory of 'qc' named 'script_output'
+    - Copy get_sample_name_dic.sh and qc.slurm to the project directory
+    - Run 'bash get_sample_name_dic.sh > sample_dic.txt' in the project directory to retrieve the sample list where each accession number is space-delimited
+    - Copy the contents of sample_dic.txt to qc.slurm for the 'sample_name' variable 
+    - Edit the paths in lines 8, 9, 20, 28, and 29, then run 'sbatch qc.slurm'
 
-3. Run Qiime2- files can be found in the [qiime2 folder](https://github.com/clayton-lab/BugSeq-er/tree/main/qiime2)
-    - Make directory called 'qiime2' and make sure QIIME2 version 2021.4 installed with all of the plugins listed above. 
+3. Run Qiime2: reference files can be found in the [qiime2 folder](https://github.com/clayton-lab/BugSeq-er/tree/main/qiime2)
+    - Create project subdirectory 'qiime2'
+    - Ensure QIIME2 version 2021.4 installed by running 'module load qiime2/(most recent package)
+        * All HCC module names and versions can be found [in the HCC documentation](https://hcc.unl.edu/docs/applications/modules/available_software_for_crane/)
+    - Download the latest release for the reference SILVA database to your local computer [here](https://docs.qiime2.org/2020.6/data-resources/#taxonomy-classifiers-for-use-with-q2-feature-classifier)
+        * To download, select the "Silva 138 99% OTUs full-length sequences" under the "Naive Bayes classifiers trained on:" section 
+    - Upload the reference SILVA database to the qiime2 subdirectory
+    - Copy metadata.tsv and manifest to the 
     - Bulid the manifest file using the 'manifest_builder.py' by specifiying -i acc_list_file -p path_to_the_raw_reads
     - Get the metadata.tsv in the right formate [(example is provided).](https://github.com/clayton-lab/BugSeq-er/blob/main/sample_metadata.tsv)
-    - Get the latest relese for the refrence database (SILVA or Greengenes (GG)). 
-    - Naive Bayes classifiers trained on: both Greengenes and Silva classifiers are available here: https://docs.qiime2.org/2020.6/data-resources/#taxonomy-classifiers-for-use-with-q2-feature-classifier 
-    - Make sure these files are included in the 'qiime2' directory: metadata.tsv, manifest, and reference database.
     - Part 1 before running 'part1.slurm' check the following: 
         * Edit the path in line 8, 9, and 20.
         * If your data contain adapter sequnces removed them using cutadapt line 35-40 (make sure to change line 37, and 38 with your adapter sequnces).
