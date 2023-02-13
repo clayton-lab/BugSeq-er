@@ -5,37 +5,38 @@
         * Insert the Sequence Read Archive (SRA) BioProject ID as an accession
         * Select the samples you want then downlowd the accession list and metadata for the selected samples
     - Check the accession list file and name it 'SRR_Acc_List.txt'. Each line should have one accession number.
-    - Finally, run 'bash get_fastq.sh' in the project directory.
+    - Run 'bash get_fastq.sh' in the project directory
 
 2. Pre-process the data using FastQC and MultiQC: reference files can be found in the [Pre-process folder](https://github.com/clayton-lab/BugSeq-er/tree/main/Pre-process)
     - Create project subdirectory 'qc' within the project directory, then create a subdirectory of 'qc' named 'script_output'
     - Copy get_sample_name_dic.sh and qc.slurm to the project directory
     - Run 'bash get_sample_name_dic.sh > sample_dic.txt' in the project directory to retrieve the sample list where each accession number is space-delimited
     - Copy the contents of sample_dic.txt to qc.slurm for the 'sample_name' variable 
-    - Edit the paths in lines 8, 9, 20, 28, and 29, then run 'sbatch qc.slurm'
+    - Edit the paths in lines 8 & 9 (to script_output), 20 (to raw_reads), and 28 & 29 (to qc), then run 'sbatch qc.slurm'
 
 3. Run Qiime2: reference files can be found in the [qiime2 folder](https://github.com/clayton-lab/BugSeq-er/tree/main/qiime2)
-    - Create project subdirectory 'qiime2'
+    - Copy 'manifest_builder.py' to the project directory 
+    - Bulid the manifest file by running 'python manifest_builder.py -i (acc list filename) -p (path to the raw reads)
+    - Create project subdirectory 'qiime2' within the project directory, then create a subdirectory of 'qc' named 'script_output'
     - Ensure QIIME2 version 2021.4 installed by running 'module load qiime2/(most recent package)
         * All HCC module names and versions can be found [in the HCC documentation](https://hcc.unl.edu/docs/applications/modules/available_software_for_crane/)
     - Download the latest release for the reference SILVA database to your local computer [here](https://docs.qiime2.org/2020.6/data-resources/#taxonomy-classifiers-for-use-with-q2-feature-classifier)
         * To download, select the "Silva 138 99% OTUs full-length sequences" under the "Naive Bayes classifiers trained on:" section 
-    - Upload the reference SILVA database to the qiime2 subdirectory
-    - Copy metadata.tsv and manifest to the 
-    - Bulid the manifest file using the 'manifest_builder.py' by specifiying -i acc_list_file -p path_to_the_raw_reads
-    - Get the metadata.tsv in the right formate [(example is provided).](https://github.com/clayton-lab/BugSeq-er/blob/main/sample_metadata.tsv)
-    - Part 1 before running 'part1.slurm' check the following: 
-        * Edit the path in line 8, 9, and 20.
-        * If your data contain adapter sequnces removed them using cutadapt line 35-40 (make sure to change line 37, and 38 with your adapter sequnces).
-        * If your data dosen't contain adapter sequnces then comment out lines 35-44.
-        * Finally, run the 'sbatch part1.slurm'
-    - Part 2 before running 'part2.slurm' check the following: 
-        * Edit the path in line 8, 9, and 28.
-        * In addition, look at the demux visulasation in the artifacts directory to assign trimming and truncating values.
-        * If adapter sequnces were removed, look at the 'paired-end-demux-trimmed.qzv'
-        * If no adapter sequnces were removed, look at the 'demux.qzv' and replace line 33 with '--i-demultiplexed-seqs artifacts/demuxed-paired-end.qza'.
-        * Assign values for the dada2 denoising step line 18-21.
-        * Make sure edit and check the file name of the reference database line 72.
+    - Upload the reference SILVA database file to the qiime2 subdirectory
+    - Copy metadata.tsv and the manifest file to the qiime2 subdirectory
+        * Ensure metadata.tsv in the right format [(example provided here)](https://github.com/clayton-lab/BugSeq-er/blob/main/sample_metadata.tsv): specifically, the second row should read "#q2:types", then "categorical" for all other columns
+    - Copy 'part1.slurm' to the project directory 
+        * Edit the path in line 8 & 9 (to script_output) and 20 (qiime2)
+        * //I don't understand this, or how to find/know if you have an adapter//If your data contain adapter sequnces, remove them using cutadapt line 35-44 (make sure to change line 37, and 38 with your adapter sequnces)
+        * If your data doesn't contain adapter sequnces, comment out lines 35-44
+    - Run 'sbatch part1.slurm'
+    - Copy 'part2.slurm' to the project directory
+        * Edit the path in line 8 & 9 (to script_output) and 28 (qiime2)
+        * Visualize 'demux.qzv' (for projects with no adapter sequences) or 'paired-end-demux-trimmed.qzv' (for projects with adapter sequences), located in the 'qiime2' 'artifacts' subdirectory, by downloading to your computer and uploading the file to [Qiime2 View](https://view.qiime2.org/) 
+        * Access the file's 'Interactive Quality Plot' tab: assign trimming values for forward (p_trim_left_f) and reverse (p_trim_left_r) reads by estimating the lowest sequence base (x axis) with quality data in the relevant graph; assign truncating values for forward (p_trunc_len_f) and reverse (p_trunc_len_r) reads by estimating the highest sequence base (x axis) with quality data in the relevant graph
+        * If no adapter sequnces were removed, replace part2.slurm line 33 with '--i-demultiplexed-seqs artifacts/demuxed-paired-end.qza'
+        * Assign values for the dada2 denoising step line 18-21 (HERE)
+        * Make sure edit and check the file name of the reference database line 72
         * Finally, run the 'sbatch part2.slurm'
     - Part 3 before running 'part3.slurm' check the following: 
         * Edit the path in line 8, 9, and 15.
