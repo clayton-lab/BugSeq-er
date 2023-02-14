@@ -4,7 +4,7 @@
         * Before running the script, go to the SRA Run Selector (https://www.ncbi.nlm.nih.gov/Traces/study/)
         * Insert the Sequence Read Archive (SRA) BioProject ID as an accession
         * Select the samples you want then downlowd the accession list and metadata for the selected samples
-    - Check the accession list file and name it 'SRR_Acc_List.txt'. Each line should have one accession number.
+    - Check the accession list file and name it 'SRR_Acc_List.txt'; each line should have one accession number
     - Run 'bash get_fastq.sh' in the project directory
 
 2. Pre-process the data using FastQC and MultiQC: reference files can be found in the [Pre-process folder](https://github.com/clayton-lab/BugSeq-er/tree/main/Pre-process)
@@ -74,7 +74,7 @@
         * Copy 'format_pathway_abun.sh', and 'pathway_format.py' to the 'vis-lefse' directory
             * Edit the path in lines 6 (.../vis-lefse), 9 (.../qiime2/picrust/results/pathways_out/path_abun_unstrat.tsv.gz, .../vis-lefse), 11 (-i .../qiime2/metadata.tsv), 15 (-r .../vis-lefse/path_abun_unstrat.tsv)
             * Edit the title for the resulting plot (line 20)
-            * Edit line 11 (-f) to numerically reflect the 'metadata.tsv' columns named 'sample-id', 'type', and 'sub-type'
+            * Edit line 11 (-f) to match the indices of 'metadata.tsv' columns named 'sample-id', 'type', and 'sub-type'
         * Run 'bash format_pathway_abun.sh' in the 'vis-lefse' subdirectory
         
 6. Running correlation and statistical analysis (alpha and beta group significance, differential abundance (ANCOM))
@@ -87,5 +87,5 @@
     - Differential abundance (ANCOM) analysis: relevant files can be found in the [ANCOM folder](https://github.com/clayton-lab/BugSeq-er/tree/main/ANCOM)
         * Copy 'ancom.sh' to the 'ancom' subdirectory
             * Edit the path in line 5 (.../qiime2/ancom)
-        * Ensure '--m-metadata-column' matches the name of relevant metadata columns (lines 21, 39, 57, 74, 91, and 108)
+        * Ensure '--m-metadata-column' matches the names of relevant metadata columns (lines 21, 39, 57, 74, 91, and 108)
         * Run 'bash ancom.sh' from the 'ancom' subdirectory
