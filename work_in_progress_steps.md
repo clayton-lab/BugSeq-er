@@ -74,7 +74,7 @@
         * Copy 'format_pathway_abun.sh', and 'pathway_format.py' to the 'vis-lefse' directory
             * Edit the path in lines 6 (.../vis-lefse), 9 (.../qiime2/picrust/results/pathways_out/path_abun_unstrat.tsv.gz, .../vis-lefse), 11 (-i .../qiime2/metadata.tsv), 15 (-r .../vis-lefse/path_abun_unstrat.tsv)
             * Edit the title for the resulting plot (line 20)
-            * Edit line 11 (-f) to match the indices of 'metadata.tsv' columns named 'sample-id', 'type', and 'sub-type'
+            * Edit line 11 (-f) to match the indices of 'metadata.tsv' columns containing 'sample-id' and numerical condition groups (if numerical groups are not present in the metadata, they will have to be manually assigned)
         * Run 'bash format_pathway_abun.sh' in the 'vis-lefse' subdirectory
         
 6. Running correlation and statistical analysis (alpha and beta group significance, differential abundance (ANCOM))
