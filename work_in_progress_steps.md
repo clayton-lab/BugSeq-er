@@ -3,16 +3,18 @@
     - Copy get_fastq.sh to the project directory to retrieve sequnces from NCBI Sequence Read Archive (SRA)
         * Before running the script, go to the SRA Run Selector (https://www.ncbi.nlm.nih.gov/Traces/study/)
         * Insert the Sequence Read Archive (SRA) BioProject ID as an accession
-        * Select the samples you want then downlowd the accession list and metadata for the selected samples
+        * Select the samples you want then download the accession list and metadata for the selected samples
     - Check the accession list file and name it 'SRR_Acc_List.txt'; each line should have one accession number
     - Run 'bash get_fastq.sh' in the project directory
 
 2. Pre-process the data using FastQC and MultiQC: reference files can be found in the [Pre-process folder](https://github.com/clayton-lab/BugSeq-er/tree/main/Pre-process)
     - Create project subdirectory 'qc' within the project directory, then create a subdirectory of 'qc' named 'script_output'
-    - Copy get_sample_name_dic.sh and qc.slurm to the project directory
-    - Run 'bash get_sample_name_dic.sh > sample_dic.txt' in the project directory to retrieve the sample list where each accession number is space-delimited
-    - Copy the contents of sample_dic.txt to qc.slurm for the 'sample_name' variable 
-    - Edit the paths in lines 8 & 9 (.../qc/script_output), 20 (.../raw_reads), and 28 & 29 (.../qc), then run 'sbatch qc.slurm'
+    - Copy get_sample_name_dic.sh to the project directory
+    - Run 'bash get_sample_name_dic.sh > sample_dic.txt' in the project directory to retrieve the sample list where each accession number is space-delimited 
+    - Copy qc.slurm to the project directory
+        * Copy the contents of sample_dic.txt to qc.slurm for the 'sample_name' variable 
+        * Edit the paths in qc.slurm lines 8 & 9 (.../qc/script_output), 20 (.../raw_reads), and 28 & 29 (.../qc)
+    - Run 'sbatch qc.slurm' in the project directory
 
 3. Run Qiime2: reference files can be found in the [qiime2 folder](https://github.com/clayton-lab/BugSeq-er/tree/main/qiime2)
     - Copy 'manifest_builder.py' to the project directory 
