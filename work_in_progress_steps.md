@@ -20,8 +20,9 @@
     - Copy 'manifest_builder.py' to the project directory 
     - Bulid the manifest file by running 'python manifest_builder.py -i (acc list filename) -p (path to the raw reads)
     - Create project subdirectory 'qiime2' within the project directory, then create a subdirectory of 'qc' named 'script_output'
-    - Install QIIME2 version 2021.4 by running 'module load qiime2/[(most recent package)](https://hcc.unl.edu/docs/applications/modules/available_software_for_crane/)'
+    - Install QIIME2 by running 'module load qiime2/[(most recent package)](https://hcc.unl.edu/docs/applications/modules/available_software_for_crane/)'
         * All HCC module names and versions can be found [in the HCC documentation](https://hcc.unl.edu/docs/applications/modules/available_software_for_crane/)
+        * Currently, qiime2/2021.2 is the most recent version compatible with the SILVA classifier: to run this pipeline with more recent versions of qiime2, train the classifier as instructed [here] (https://forum.qiime2.org/t/processing-filtering-and-evaluating-the-silva-database-and-other-reference-sequence-data-with-rescript/15494)
     - Download the latest release for the reference SILVA database to your local computer [here](https://docs.qiime2.org/2020.6/data-resources/#taxonomy-classifiers-for-use-with-q2-feature-classifier)
         * To download, select the "Silva 138 99% OTUs full-length sequences" under the "Naive Bayes classifiers trained on:" section 
     - Upload the reference SILVA database file to the qiime2 subdirectory
