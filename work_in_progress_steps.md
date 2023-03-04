@@ -51,7 +51,7 @@
     - Run 'sbatch part3.slurm'
     - Copy 'normalized_srs.sh' to the qiime2 subdirectory to perform normalization using SRS (scaling with ranked subsampling)
         * Visualize 'table.qza', located in the 'qiime2/artifacts' subdirectory, by downloading to your computer and uploading the file to the [SRS Shiny app](https://vitorheidrich.shinyapps.io/srsshinyapp/)
-        * Select a sampling depth (Cmin) at the lowest value which doesn’t result in eliminating samples
+        * Select a sampling depth (Cmin) at the highest value which doesn’t result in eliminating samples
         * Assign Cmin value (line 7, --p-c-min)
     - Run 'bash normalized_srs.sh' in the 'qiime2' subdirectory
 
