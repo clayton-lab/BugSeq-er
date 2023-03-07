@@ -73,7 +73,8 @@
     - PICRUSt2 analysis: reference files can be found in the [PICRUSt2 folder](https://github.com/clayton-lab/BugSeq-er/tree/main/PICRUSt2)
         * Install PICRUSt2 version 2.4 by running 'module load lefse/[(most recent package)](https://hcc.unl.edu/docs/applications/modules/available_software_for_crane/)'
         * Copy 'picrust2.slurm' to the 'picrust' subdirectory
-        * Edit the path in lines 8 & 9 (to qiime2/script_output), 13 (to picrust), and 18 (-s .../qiime2/exports/rep-seqs/dna-sequences.fasta -i .../qiime2/exports/table/feature-table-w-taxa.biom
+            * Edit the path in lines 8 & 9 (to qiime2/script_output), 13 (to picrust), and 18 (-s .../qiime2/exports/rep-seqs/dna-sequences.fasta -i .../qiime2/exports/table/feature-table-w-taxa.biom
+        * Run 'sbatch picrust2.slurm' in the 'picrust' subdirectory
         * Copy 'format_pathway_abun.sh', and 'pathway_format.py' to the 'vis-lefse' directory
             * Edit the path in lines 6 (.../vis-lefse), 9 (.../qiime2/picrust/results/pathways_out/path_abun_unstrat.tsv.gz, .../vis-lefse), 11 (-i .../qiime2/metadata.tsv), 15 (-r .../vis-lefse/path_abun_unstrat.tsv)
             * Edit the title for the resulting plot (line 20)
