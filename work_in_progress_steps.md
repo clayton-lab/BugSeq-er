@@ -18,7 +18,7 @@
 
 3. Run Qiime2: reference files can be found in the [qiime2 folder](https://github.com/clayton-lab/BugSeq-er/tree/main/qiime2)
     - Copy 'manifest_builder.py' to the project directory 
-    - Bulid the manifest file by running 'python manifest_builder.py -i (acc list filename) -p (path to the raw reads)
+    - Bulid the manifest file by running 'python manifest_builder.py -i (acc list filename) -p (path to the raw reads)'
     - Create project subdirectory 'qiime2' within the project directory, then create a subdirectory of 'qc' named 'script_output'
     - Install QIIME2 by running 'module load qiime2/[(most recent package)](https://hcc.unl.edu/docs/applications/modules/available_software_for_crane/)'
         * All HCC module names and versions can be found [in the HCC documentation](https://hcc.unl.edu/docs/applications/modules/available_software_for_crane/)
