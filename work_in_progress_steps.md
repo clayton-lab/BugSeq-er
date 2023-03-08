@@ -75,7 +75,7 @@
         * Copy 'picrust2.slurm' to the 'picrust' subdirectory
             * Edit the path in lines 8 & 9 (to qiime2/script_output), 13 (to picrust), and 18 (-s .../qiime2/exports/rep-seqs/dna-sequences.fasta -i .../qiime2/exports/table/feature-table-w-taxa.biom
         * Run 'sbatch picrust2.slurm' in the 'picrust' subdirectory
-        * Copy 'format_pathway_abun.sh', and 'pathway_format.py' to the 'vis-lefse' directory
+        * Copy 'format_pathway_abun.sh', 'lefse-format_input.py', 'lefse-plot_res.py', 'run_lefse.py', and 'pathway_format.py' to the 'vis-lefse' directory
             * Edit the path in lines 6 (.../vis-lefse), 9 (.../qiime2/picrust/results/pathways_out/path_abun_unstrat.tsv.gz, .../vis-lefse), 11 (-i .../qiime2/metadata.tsv), 15 (-r .../vis-lefse/path_abun_unstrat.tsv)
             * Edit the title for the resulting plot (line 20)
             * Edit line 11 (-f) to match the indices of 'metadata.tsv' columns containing 'sample-id' and numerical condition groups (if numerical groups are not present in the metadata, they will have to be manually assigned)
