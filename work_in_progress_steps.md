@@ -32,7 +32,7 @@
         * Edit the path in lines 8 & 9 (.../qiime2/script_output) and 20 (.../qiime2)
         * //I don't understand this, or how to find/know if you have an adapter//If your data contain adapter sequnces, remove them using cutadapt line 35-44 (make sure to change line 37, and 38 with your adapter sequnces)
         * If your data doesn't contain adapter sequnces, comment out lines 35-44
-    - Run 'sbatch part1.slurm'
+    - Run 'sbatch part1.slurm' in the project directory
     - Copy 'part2.slurm' to the project directory
         * Edit the path in lines 8 & 9 (.../qiime2/script_output) and 28 (.../qiime2)
         * Visualize 'demux.qzv' (for projects with no adapter sequences) or 'paired-end-demux-trimmed.qzv' (for projects with adapter sequences), located in the 'qiime2' 'artifacts' subdirectory, by downloading to your computer and uploading the file to [Qiime2 View](https://view.qiime2.org/) 
