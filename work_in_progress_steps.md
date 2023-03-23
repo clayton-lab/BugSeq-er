@@ -78,7 +78,7 @@
         * Copy 'format_pathway_abun.sh', 'lefse-format_input.py', 'lefse-plot_res.py', 'run_lefse.py', and 'pathway_format.py' to the 'vis-lefse' directory
             * Edit the path in lines 6 (.../vis-lefse), 9 (.../qiime2/picrust/results/pathways_out/path_abun_unstrat.tsv.gz, .../vis-lefse), 11 (-i .../qiime2/metadata.tsv), 15 (-r .../vis-lefse/path_abun_unstrat.tsv)
             * Edit the title for the resulting plot (line 20)
-            * Edit line 11 (-f) to match the indices of 'metadata.tsv' columns containing 'sample-id' and numerical condition groups (if numerical groups are not present in the metadata, they will have to be manually assigned)
+            * Edit line 11 (-f) to match the indices of 'metadata.tsv' columns containing 'sample-id' as well as the condition which you are interested in analyzing (note: these conditions must be represented numerically for the analysis to run)
         * Run 'bash format_pathway_abun.sh' in the 'vis-lefse' subdirectory
         
 6. Running correlation and statistical analysis (alpha and beta group significance, differential abundance (ANCOM))
@@ -86,7 +86,7 @@
     - Alpha and beta group analysis: relevant files can be found in the [Stat folder](https://github.com/clayton-lab/BugSeq-er/tree/main/Stat)
         * Copy 'stat.slurm' to the 'stat' subdirectory
             * Edit the path in lined 8 & 9 (.../stat/script_output) and 15 (.../qiime2)
-        * Ensure '--m-metadata-column' matches the name of relevant metadata columns (lines 44, 50, 56, 62, 68, 74, 81, and 87)
+        * Ensure '--m-metadata-column' matches the names of the two relevant metadata columns which you are analyzing (column one, lines 44, 56, 68, and 81; column two, 50, 62, 74, and 87)
         * Run 'sbatch stat.slurm' in the 'stat' subdirectory
     - Differential abundance (ANCOM) analysis: relevant files can be found in the [ANCOM folder](https://github.com/clayton-lab/BugSeq-er/tree/main/ANCOM)
         * Copy 'ancom.sh' to the 'ancom' subdirectory
