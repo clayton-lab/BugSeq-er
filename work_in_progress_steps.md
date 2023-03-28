@@ -22,16 +22,18 @@
     - Create project subdirectory 'qiime2' within the project directory, then create a subdirectory of 'qc' named 'script_output'
     - Install QIIME2 by running 'module load qiime2/[(most recent package)](https://hcc.unl.edu/docs/applications/modules/available_software_for_crane/)'
         * All HCC module names and versions can be found [in the HCC documentation](https://hcc.unl.edu/docs/applications/modules/available_software_for_crane/)
-        * Currently, qiime2/2021.2 is the most recent version compatible with the SILVA classifier: to run this pipeline with more recent versions of qiime2, train the classifier as instructed [here] (https://forum.qiime2.org/t/processing-filtering-and-evaluating-the-silva-database-and-other-reference-sequence-data-with-rescript/15494)
-    - Download the latest release for the reference SILVA database to your local computer [here](https://docs.qiime2.org/2020.6/data-resources/#taxonomy-classifiers-for-use-with-q2-feature-classifier)
+    - Download the latest release for the reference SILVA classifier to your local computer [here](https://docs.qiime2.org/2020.6/data-resources/#taxonomy-classifiers-for-use-with-q2-feature-classifier)
         * To download, select the "Silva 138 99% OTUs full-length sequences" under the "Naive Bayes classifiers trained on:" section 
+        * NOTE: qiime2/2021.2 is the most recent version compatible with the SILVA classifier, and use of these packages will cause part2.slurm to fail: either,
+            - Ensure part2.slurm line 28 reads as 'module load qiime2/2021.2' (in which case, qiime2 results may be outdated), or
+            - Use RESCRIPt to train the classifier as instructed [here] (https://forum.qiime2.org/t/processing-filtering-and-evaluating-the-silva-database-and-other-reference-sequence-data-with-rescript/15494) for compatibility with newer qiime2 packages
     - Upload the reference SILVA database file to the qiime2 subdirectory
     - Copy metadata.tsv and the manifest file to the qiime2 subdirectory
         * Ensure metadata.tsv in the right format [(example provided here)](https://github.com/clayton-lab/BugSeq-er/blob/main/sample_metadata.tsv): specifically, the second row should read "#q2:types", then "categorical" for all other columns
     - Copy 'part1.slurm' to the project directory 
         * Edit the path in lines 8 & 9 (.../qiime2/script_output) and 20 (.../qiime2)
-        * //I don't understand this, or how to find/know if you have an adapter//If your data contain adapter sequnces, remove them using cutadapt line 35-44 (make sure to change line 37, and 38 with your adapter sequnces)
-        * If your data doesn't contain adapter sequnces, comment out lines 35-44
+        * If the data contain adapter sequnces, edit line 37 & 38 to match the sequence
+        * If the data doesn't contain adapter sequnces, comment out lines 35-44
     - Run 'sbatch part1.slurm' in the project directory
     - Copy 'part2.slurm' to the project directory
         * Edit the path in lines 8 & 9 (.../qiime2/script_output) and 28 (.../qiime2)
