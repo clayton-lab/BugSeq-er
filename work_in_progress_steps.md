@@ -26,7 +26,7 @@
         * To download, select the "Silva 138 99% OTUs full-length sequences" under the "Naive Bayes classifiers trained on:" section 
         * NOTE: qiime2/2021.2 is the most recent version compatible with the SILVA classifier, and use of these packages will cause part2.slurm to fail: either,
             - Ensure part2.slurm line 28 reads as 'module load qiime2/2021.2' (in which case, qiime2 results may be outdated), or
-            - Use RESCRIPt to train the classifier as instructed [here] (https://forum.qiime2.org/t/processing-filtering-and-evaluating-the-silva-database-and-other-reference-sequence-data-with-rescript/15494) for compatibility with newer qiime2 packages
+            - Use RESCRIPt to train the classifier as instructed [(here)] (https://forum.qiime2.org/t/processing-filtering-and-evaluating-the-silva-database-and-other-reference-sequence-data-with-rescript/15494) for compatibility with newer qiime2 packages
     - Upload the reference SILVA database file to the qiime2 subdirectory
     - Copy metadata.tsv and the manifest file to the qiime2 subdirectory
         * Ensure metadata.tsv in the right format [(example provided here)](https://github.com/clayton-lab/BugSeq-er/blob/main/sample_metadata.tsv): specifically, the second row should read "#q2:types", then "categorical" for all other columns
