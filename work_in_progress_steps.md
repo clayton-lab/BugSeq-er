@@ -70,7 +70,8 @@
     - LEfSe analysis: reference files can be found in the [LEfSe folder](https://github.com/clayton-lab/BugSeq-er/tree/main/LEfSe)
         * Install LEfSe version 1.0 by running 'module load lefse/[(most recent package)](https://hcc.unl.edu/docs/applications/modules/available_software_for_crane/)'
         * Copy 'format_rel_level.sh' and 'rel_format.py' to the 'lefse' subdirectory
-            * Edit titles for resulting plots according to the sample metadata (line 28, 33, 38, 43, 48, and 53)
+            * In 'format_rel_level.sh', edit titles for resulting plots according to the sample metadata (line 28, 33, 38, 43, 48, and 53)
+            * In the same file, edit line 16 (-f) to match the indices of 'metadata.tsv' columns containing 'sample-id' as well as the condition which you are interested in analyzing (note: these conditions must be represented numerically for the analysis to run)
         * Run 'bash format_rel_level.sh' in the 'lefse' subdirectory
     - PICRUSt2 analysis: reference files can be found in the [PICRUSt2 folder](https://github.com/clayton-lab/BugSeq-er/tree/main/PICRUSt2)
         * Install PICRUSt2 version 2.4 by running 'module load lefse/[(most recent package)](https://hcc.unl.edu/docs/applications/modules/available_software_for_crane/)'
