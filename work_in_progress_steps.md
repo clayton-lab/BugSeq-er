@@ -69,16 +69,16 @@
     - Create two subdirectories of 'qiime2' named 'lefse' and 'picrust', then create a subdirectory of 'picrust' named 'vis_lefse'
     - LEfSe analysis: reference files can be found in the [LEfSe folder](https://github.com/clayton-lab/BugSeq-er/tree/main/LEfSe)
         * Install LEfSe version 1.0 by running 'module load lefse/[(most recent package)](https://hcc.unl.edu/docs/applications/modules/available_software_for_crane/)'
-        * Copy 'format_rel_level.sh' and 'rel_format.py' to the 'lefse' subdirectory
-            * In 'format_rel_level.sh', edit titles for resulting plots according to the sample metadata (line 28, 33, 38, 43, 48, and 53)
-            * In the same file, edit line 16 (-f) to match the indices of 'metadata.tsv' columns containing 'sample-id' as well as the condition which you are interested in analyzing (note: these conditions must be represented numerically for the analysis to run)
+        * Copy 'format_rel_level.sh' and 'rel_format.py' to the 'lefse' subdirectory, then open 'format_rel_level.sh'
+            * Edit titles for resulting plots according to the sample metadata (line 28, 33, 38, 43, 48, and 53)
+            * Edit line 16 (-f) to match the indices of 'metadata.tsv' columns containing 'sample-id' as well as the condition which you are interested in analyzing (note: these conditions must be represented numerically for the analysis to run)
         * Run 'bash format_rel_level.sh' in the 'lefse' subdirectory
     - PICRUSt2 analysis: reference files can be found in the [PICRUSt2 folder](https://github.com/clayton-lab/BugSeq-er/tree/main/PICRUSt2)
         * Install PICRUSt2 version 2.4 by running 'module load lefse/[(most recent package)](https://hcc.unl.edu/docs/applications/modules/available_software_for_crane/)'
         * Copy 'picrust2.slurm' to the 'picrust' subdirectory
             * Edit the path in lines 8 & 9 (to qiime2/script_output), 13 (to picrust), and 18 (-s .../qiime2/exports/rep-seqs/dna-sequences.fasta -i .../qiime2/exports/table/feature-table-w-taxa.biom
         * Run 'sbatch picrust2.slurm' in the 'picrust' subdirectory
-        * Copy 'format_pathway_abun.sh', 'lefse-format_input.py', 'lefse-plot_res.py', 'run_lefse.py', and 'pathway_format.py' to the 'vis-lefse' directory
+        * Copy 'format_pathway_abun.sh', 'lefse-format_input.py', 'lefse-plot_res.py', 'run_lefse.py', and 'pathway_format.py' to the 'vis-lefse' directory, then open 'format_pathway_abun.sh'
             * Edit the path in lines 6 (.../vis-lefse), 9 (.../qiime2/picrust/results/pathways_out/path_abun_unstrat.tsv.gz, .../vis-lefse), 11 (-i .../qiime2/metadata.tsv), 15 (-r .../vis-lefse/path_abun_unstrat.tsv)
             * Edit the title for the resulting plot (line 20)
             * Edit line 11 (-f) to match the indices of 'metadata.tsv' columns containing 'sample-id' as well as the condition which you are interested in analyzing (note: these conditions must be represented numerically for the analysis to run)
